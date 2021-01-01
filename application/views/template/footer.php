@@ -55,10 +55,6 @@
                     $(this).next('.custom-file-label').addClass("selected").html(fileName);
                 });
 
-
-
-
-
                 $('.form-check-input').on('click', function() {
                     const menuId = $(this).data('menu');
                     const roleId = $(this).data('role');
@@ -84,7 +80,22 @@
                     $(this).find('.modal-body #menu_id').val(id)
                     $(this).find('.modal-body #menu').val(menu)
                 })
-            </script>
+
+                $('#editSubMenu').on('show.bs.modal', function(event) {
+                    let id = $(event.relatedTarget).data('id')
+                    let menu_id = $(event.relatedTarget).data('menu_id')
+                    let title = $(event.relatedTarget).data('title')
+                    let url = $(event.relatedTarget).data('url')
+                    let icon = $(event.relatedTarget).data('icon')
+                    let is_active = $(event.relatedTarget).data('is_active')
+                    $(this).find('.modal-body #id').val(id)
+                    $(this).find('.modal-body #menu_id').val(menu_id)
+                    $(this).find('.modal-body #title').val(title)
+                    $(this).find('.modal-body #url').val(url)
+                    $(this).find('.modal-body #icon').val(icon)
+                    $(this).find('.modal-body #is_active').val(is_active)
+                })
+                </script>
             </body>
 
             </html>

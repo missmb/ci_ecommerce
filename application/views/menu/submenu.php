@@ -36,7 +36,7 @@
                             <th scope="col"><?= $sm['icon']; ?></th>
                             <th scope="col"><?= $sm['is_active']; ?></th>
                             <th scope="col">
-                                <a href="<?= base_url('menu/edit/' . $sm['id']); ?>" class="badge badge-success">edit</a>
+                            <a data-toggle="modal" data-id=<?= $sm['id']; ?> data-menu_id=<?= $sm['menu_id'] ; ?> data-title="<?= $sm['title'] ; ?>"  data-url=<?= $sm['url'] ; ?>  data-icon="<?= $sm['icon'] ; ?>" data-is_active=<?= $sm['is_active'] ; ?> data-target="#editSubMenu" class="badge badge-success">edit</a>
                                 <a href="<?= base_url('menu/deleteSubMenu/' . $sm['id']); ?>" class="badge badge-danger">delete</a>
                             </th>
                         </tr>
@@ -92,6 +92,53 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit SubMenu -->
+
+<div class="modal fade" id="editSubMenu" tabindex="-1" role="dialog" aria-labelledby="editSubMenuLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSubMenuLabel">Edit Menu</h5>
+                <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('menu/editsubmenu'); ?>" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="id" name="id" value="">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="SubMenu Title"  value="">
+                    </div>
+                    <div class="form-group">
+                        <select name="menu_id" id="menu_id" class="form-control">
+                            <option value="">Select Menu</option>
+                            <?php foreach ($menu as $m) : ?>
+                                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu Url"  value="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="icon" name="icon" placeholder="SubMenu icon"  value="">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" value="1" name="is_active" class="form-check-input" checked  value="">
+                            <label for="is_active" class="form-check-label">Active?</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

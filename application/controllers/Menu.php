@@ -92,7 +92,6 @@ class Menu extends CI_Controller
         } else {
             $id = $this->input->post('menu_id');
             $menu = $this->input->post('menu');
-var_dump($id);
             $this->Menu_Model->update($id, $menu);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your Menu has been updated!</div>');
         redirect('menu');
@@ -104,4 +103,32 @@ var_dump($id);
         redirect('menu/submenu');
     }
     
+    public function editSubMenu(){
+        $data['title'] = 'Edit Menu';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+        
+        $this->form_validation->set_rules('title', 'title', 'is_unique[user_sub_menu.title]', [
+            'is_unique' => 'This menu aready exist',
+        ]);
+
+        if($this->form_validation->run() == false){
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('template/footer', $data);
+        } else {
+                $id = $this->input->post('id');
+                $menu_id = $this->input->post('menu_id');
+                $title = $this->input->post('title');
+                $url = $this->input->post('url');
+                $icon = $this->input->post('icon');
+                $is_active = $this->input->post('is_active');
+            $this->Menu_Model->updateSubMenu($id, $menu_id, $title, $url, $icon, $is_active);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your SubMenu has been updated!</div>');
+        redirect('menu/submenu');
+        }
+    }
 }

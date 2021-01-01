@@ -24,7 +24,7 @@
                             <th scope="col"><?= $i; ?></th>
                             <th scope="col"><?= $m['menu']; ?></th>
                             <th scope="col">
-                                <a href="" class="badge badge-success">edit</a>
+                                <a data-toggle="modal" data-id=<?= $m['id']; ?> data-menu=<?= $m['menu']; ?> data-target="#editMenu" class="badge badge-success">edit</a>
                                 <a href="<?= base_url('menu/delete/'.$m['id']); ?>" class="badge badge-danger">delete</a>
                             </th>
                         </tr>
@@ -60,6 +60,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Menu -->
+
+<div class="modal fade" id="editMenu" tabindex="-1" role="dialog" aria-labelledby="editMenuLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editMenuLabel">Edit Menu</h5>
+                <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('menu/edit'); ?>" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="menu_id" name="menu_id" value="">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="menu" name="menu" value="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

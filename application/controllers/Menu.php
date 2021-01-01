@@ -7,7 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-
+        $this->load->model('Menu_Model');
     }
 
     public function index()
@@ -72,14 +72,36 @@ class Menu extends CI_Controller
         }
     }
 
-    
-
     public function edit(){
+        $data['title'] = 'Edit Menu';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
+        $this->form_validation->set_rules('menu', 'Menu', 'is_unique[user_menu.menu]', [
+            'is_unique' => 'This menu aready exist',
+        ]);
 
+        if($this->form_validation->run() == false){
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('template/footer', $data);
+        } else {
+            $id = $this->input->post('menu_id');
+            $menu = $this->input->post('menu');
+var_dump($id);
+            $this->Menu_Model->update($id, $menu);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your Menu has been updated!</div>');
+        redirect('menu');
+        }
     }
 
     function deleteSubMenu($id){
         $this->db->delete('user_sub_menu', array('id' => $id)); 
         redirect('menu/submenu');
     }
+    
 }

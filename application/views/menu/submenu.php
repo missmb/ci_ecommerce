@@ -8,7 +8,7 @@
         <div class="col-lg-10">
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger" role="alert">
-                <?= validation_errors(); ?>
+                    <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>
             <?= $this->session->flashdata('message'); ?>
@@ -36,8 +36,8 @@
                             <th scope="col"><?= $sm['icon']; ?></th>
                             <th scope="col"><?= $sm['is_active']; ?></th>
                             <th scope="col">
-                                <a href="" class="badge badge-success">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
+                                <a href="<?= base_url('menu/edit/' . $sm['id']); ?>" class="badge badge-success">edit</a>
+                                <a href="<?= base_url('menu/deleteSubMenu/' . $sm['id']); ?>" class="badge badge-danger">delete</a>
                             </th>
                         </tr>
                         <?php $i++ ?>
@@ -68,14 +68,14 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="SubMenu Title">
                     </div>
-                <div class="form-group">
-                    <select name="menu_id" id="menu_id" class="form-control">
-                        <option value="">Select Menu</option>
-                        <?php foreach ($menu as $m) : ?>
-                            <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <select name="menu_id" id="menu_id" class="form-control">
+                            <option value="">Select Menu</option>
+                            <?php foreach ($menu as $m) : ?>
+                                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu Url">
                     </div>

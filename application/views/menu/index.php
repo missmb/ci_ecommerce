@@ -26,7 +26,6 @@
                             <th scope="col">
                                 <a href="" class="badge badge-success">edit</a>
                                 <a href="<?= base_url('menu/delete/'.$m['id']); ?>" class="badge badge-danger">delete</a>
-                                <!-- <a href="<?= base_url('menu/delete/'.$m['id']); ?>" class="badge badge-danger" data-toggle="modal" data-target="#deleteMenu">delete <?= $m['id']; ?></a> -->
                             </th>
                         </tr>
                         <?php $i++ ?>

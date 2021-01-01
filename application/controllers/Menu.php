@@ -33,6 +33,11 @@ class Menu extends CI_Controller
         }
     }
 
+    public function delete($id){
+        $this->db->delete('user_menu', array('id' => $id)); 
+        redirect('menu');
+    }
+    
     public function submenu(){
         $data['title'] = 'SubMenu Management';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -67,16 +72,14 @@ class Menu extends CI_Controller
         }
     }
 
-    public function delete($id){
-        // $item = $this->itemCRUD->delete_item($id);
-        // redirect(base_url('itemCRUD'));
-        // $this->db->delete('user_menu');
-        // var_dump($id);die;
-        $this->db->delete('user_menu', array('id' => $id)); 
-        redirect('menu');
-    }
+    
 
     public function edit(){
 
+    }
+
+    function deleteSubMenu($id){
+        $this->db->delete('user_sub_menu', array('id' => $id)); 
+        redirect('menu/submenu');
     }
 }

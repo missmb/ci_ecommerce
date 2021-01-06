@@ -12,10 +12,10 @@
                 <img src="<?= base_url() . '/assets/img/product/banner.png' ?>" class="d-block w-100" alt="..." height="250px">
             </div>
             <div class="carousel-item">
-                <img src="<?= base_url() . '/assets/img/product/banner2.png'?>" class="d-block w-100" alt="..." height="250px">
+                <img src="<?= base_url() . '/assets/img/product/banner2.png' ?>" class="d-block w-100" alt="..." height="250px">
             </div>
             <div class="carousel-item">
-                <img src="<?= base_url() . '/assets/img/product/banner3.png'?>" class="d-block w-100" alt="..." height="250px">
+                <img src="<?= base_url() . '/assets/img/product/banner3.png' ?>" class="d-block w-100" alt="..." height="250px">
             </div>
         </div>
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
@@ -39,7 +39,7 @@
                     <h5 class="card-title mb-1"><a href=""> <?= $p->name; ?> </a></h5>
                     <small class="card-text"><?= $p->description; ?></small> <br>
                     <span class="badge badge-pill badge-success mb-3">Rp. <?= $p->price; ?></span> <br>
-                    <a href="#" class="btn btn-sm btn-primary">Card</a>
+                    <?= anchor('shop/add_to_cart/' . $p->id , '<div class="btn btn-sm btn-primary">Add to Cart</div>') ?>
                 </div>
             </div>
 

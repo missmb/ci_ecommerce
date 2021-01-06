@@ -22,5 +22,19 @@ class Shop extends CI_Controller
             $this->load->view('template/footer', $data);
     }
 
+    public function add_to_cart($id){
+        $product = $this->Product_Model->find($id);
+
+        $data = array(
+            'id' => $product->id,
+            'qty' => 1,
+            'price' => $product->price,
+            'name' => $product->name
+        );
+
+        // var_dump($data);die();
+        $this->cart->insert($data);
+        redirect('shop');
+    }
 
 }

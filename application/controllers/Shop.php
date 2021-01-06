@@ -15,14 +15,15 @@ class Shop extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['product'] = $this->Product_Model->get_product()->result();
 
-            $this->load->view('template/header', $data);
-            $this->load->view('template/sidebar', $data);
-            $this->load->view('template/topbar', $data);
-            $this->load->view('shop/dashboard', $data);
-            $this->load->view('template/footer', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('shop/dashboard', $data);
+        $this->load->view('template/footer', $data);
     }
 
-    public function add_to_cart($id){
+    public function add_to_cart($id)
+    {
         $product = $this->Product_Model->find($id);
 
         $data = array(
@@ -37,8 +38,9 @@ class Shop extends CI_Controller
         redirect('shop');
     }
 
-    public function detail_cart(){
-        $data['title'] = 'Product';
+    public function detail_cart()
+    {
+        $data['title'] = 'Cart';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['product'] = $this->Product_Model->get_product()->result();
 
@@ -46,6 +48,37 @@ class Shop extends CI_Controller
         $this->load->view('template/sidebar', $data);
         $this->load->view('template/topbar', $data);
         $this->load->view('shop/cart', $data);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function delete_cart()
+    {
+        $this->cart->destroy();
+        redirect('shop');
+    }
+
+    public function payment()
+    {
+        $data['title'] = 'Payment';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['product'] = $this->Product_Model->get_product()->result();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('shop/payment', $data);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function process() {
+        $data['title'] = 'Payment';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->cart->destroy();
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('shop/process_order', $data);
         $this->load->view('template/footer', $data);
     }
 }

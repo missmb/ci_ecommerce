@@ -25,4 +25,13 @@
             <td align="right">Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td>
         </tr>
     </table>
+
+    <div align="right">
+    <a href="<?= base_url('shop/delete_cart') ?>">
+    <div class="btn btn-sm btn-danger">Delete</div></a>
+    <a href="<?= base_url('shop') ?>">
+    <div class="btn btn-sm btn-primary">Shop again</div></a>
+    <a href="<?= base_url('shop/payment') ?>">
+    <div class="btn btn-sm btn-success">payment</div></a>
+    </div>
 </div>

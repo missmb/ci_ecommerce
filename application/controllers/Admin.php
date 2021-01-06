@@ -119,6 +119,49 @@ class Admin extends CI_Controller
         );
 
         $this->Product_Model->save($data, 'product');
-        redirect('shop');
+        redirect('admin/product');
+    }
+
+    public function edit($id){
+        $data['title'] = 'Edit Product';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $where = array('id' => $id );
+        $data['product'] = $this->Product_Model->edit($where, 'product')->result();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('admin/edit-product', $data);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function update(){
+    $id = $this->input->post('id');
+    $name = $this->input->post('name');
+    $description = $this->input->post('description');
+    $category = $this->input->post('category');
+    $price = $this->input->post('price');
+    $stock = $this->input->post('stock');
+  
+    $data = array(
+        'name' => $name,
+        'description' => $description,
+        'category' => $category,
+        'price' => $price,
+        'stock' => $stock,
+    );
+
+    $where = array(
+        'id' => $id
+    );
+
+    $this->Product_Model->update($where, $data, 'product');
+    redirect('admin/product');
+    }
+
+    public function delete($id){
+    $where = array('id' => $id);
+    $this->Product_Model->delete($where, 'product');
+    redirect('admin/product');
     }
 }

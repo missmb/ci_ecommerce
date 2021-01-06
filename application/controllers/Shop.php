@@ -18,7 +18,7 @@ class Shop extends CI_Controller
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar', $data);
             $this->load->view('template/topbar', $data);
-            $this->load->view('dashboard', $data);
+            $this->load->view('shop/dashboard', $data);
             $this->load->view('template/footer', $data);
     }
 
@@ -37,4 +37,15 @@ class Shop extends CI_Controller
         redirect('shop');
     }
 
+    public function detail_cart(){
+        $data['title'] = 'Product';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['product'] = $this->Product_Model->get_product()->result();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('shop/cart', $data);
+        $this->load->view('template/footer', $data);
+    }
 }

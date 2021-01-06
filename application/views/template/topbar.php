@@ -18,8 +18,8 @@
                  <div class="navbar">
                  <ul class="nav navbar-nav navbar-right">
                  <li>
-                 <?php $cart = '<i class="fas fa-cart-plus fa-sm fa-fw mr-2 text-gray-400"></i>' .$this->cart->total_items().' items' ?>
-                 <?= $cart; ?>
+                 <?php $cart = '<i class="fas fa-cart-plus fa-sm fa-fw mr-2 text-gray-400"></i>' . $this->cart->total_items() ?>
+                 <?= anchor('shop/detail_cart', $cart); ?>
                  </li>
                  </ul>
                  </div>

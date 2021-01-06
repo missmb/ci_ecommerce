@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <h5 class="card-title mb-1"><a href=""> <?= $p->name; ?> </a></h5>
                     <small class="card-text"><?= $p->description; ?></small> <br>
-                    <span class="badge badge-pill badge-success mb-3">Rp. <?= $p->price; ?></span> <br>
+                    <span class="badge badge-pill badge-success mb-3">Rp. <?= number_format($p->price, 0, ',', '.'); ?></span> <br>
                     <?= anchor('shop/add_to_cart/' . $p->id , '<div class="btn btn-sm btn-primary">Add to Cart</div>') ?>
                 </div>
             </div>

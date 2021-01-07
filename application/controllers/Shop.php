@@ -74,11 +74,16 @@ class Shop extends CI_Controller
         $data['title'] = 'Payment';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->cart->destroy();
-        $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar', $data);
-        $this->load->view('template/topbar', $data);
-        $this->load->view('shop/process_order', $data);
-        $this->load->view('template/footer', $data);
+        $is_processed = $this->Invoice_Model->index();
+        if($is_processed){
+            $this->cart->destroy();
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/topbar', $data);
+            $this->load->view('shop/process_order', $data);
+            $this->load->view('template/footer', $data);
+        } else {
+            echo "Sorry, Your Order is Failed to Process";
+        }
     }
 }

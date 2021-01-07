@@ -21,6 +21,9 @@ class Admin extends CI_Controller
         $this->load->view('template/footer', $data);
     }
 
+    
+    //----------------------------------------------------------------
+    //ROLE
     public function Role()
     {
         $data['title'] = 'Role';
@@ -72,6 +75,9 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Access Changed! </div>');
     }
 
+
+    // ----------------------------------------------------------------
+    //PRODUCT
     public function product()
     {
         $data['title'] = 'Product';
@@ -83,10 +89,6 @@ class Admin extends CI_Controller
         $this->load->view('template/topbar', $data);
         $this->load->view('admin/product', $data);
         $this->load->view('template/footer', $data);
-    }
-
-    public function invoice()
-    {
     }
 
     public function addProduct(){
@@ -163,5 +165,33 @@ class Admin extends CI_Controller
     $where = array('id' => $id);
     $this->Product_Model->delete($where, 'product');
     redirect('admin/product');
+    }
+
+
+    // ----------------------------------------------------------------
+    //INVOICE
+    public function invoice(){
+        $data['invoice'] = $this->Invoice_Model->show_data();
+        $data['title'] = 'Invoice';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('admin/invoice', $data);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function detail_invoice($id_invoice){
+        $data['invoice'] = $this->Invoice_Model->get_id_invoice($id_invoice);
+        $data['title'] = 'Detail Invoice';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['order'] = $this->Invoice_Model->get_id_order($id_invoice);
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('admin/detail_invoice', $data);
+        $this->load->view('template/footer', $data);
     }
 }

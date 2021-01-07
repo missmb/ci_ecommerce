@@ -28,10 +28,10 @@
     </div>
 
     <!-- Page Heading -->
-    <!-- <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1> -->
+    <h1 class="h3 mb-4 text-gray-800 mt-4 text-center"><?= $title; ?></h1>
 
     <div class="row text-center mt-4">
-        <?php foreach ($product as $p) : ?>
+        <?php foreach ($women as $p) : ?>
 
             <div class="card ml-3" style="width: 16rem;">
                 <img src="<?= base_url() . '/assets/img/product/' . $p->cover ?>" class="card-img-top" height="250" alt="...">

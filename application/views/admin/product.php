@@ -56,7 +56,12 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <input type="text" class="form-control" id="category" name="category" placeholder="Category Product">
+                        <select name="category" id="category" class="form-control">
+                        <option>electronic</option>
+                        <option>women</option>
+                        <option>kids</option>
+                        <option>sport</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="price">Price</label>

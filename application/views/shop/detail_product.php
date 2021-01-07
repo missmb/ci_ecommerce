@@ -35,7 +35,7 @@
                             </tr>
                         </table>
 
-                        <?= anchor('shop/add_to_card/'.$b->id, '<div class="btn btn-sm btn-primary"> Add To Cart </div>'); ?>
+                        <?= anchor('shop/add_to_cart/' . $b->id , '<div class="btn btn-sm btn-primary">Add to Cart</div>') ?>
                         <?= anchor('shop/', '<div class="btn btn-sm btn-danger">Back</div>'); ?>
                     </div>
                 </div>

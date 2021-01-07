@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <h4>Shopping Cart</h4>
+<h1 class="h3 mb-4 text-gray-800">Shopping <?= $title; ?></h1>
+
 
     <table class="table table-bordered table-striped table-hover">
         <tr>

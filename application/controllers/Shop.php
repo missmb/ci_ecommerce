@@ -33,7 +33,6 @@ class Shop extends CI_Controller
             'name' => $product->name
         );
 
-        // var_dump($data);die();
         $this->cart->insert($data);
         redirect('shop');
     }
@@ -70,12 +69,13 @@ class Shop extends CI_Controller
         $this->load->view('template/footer', $data);
     }
 
-    public function process() {
-        $data['title'] = 'Payment';
+    public function process()
+    {
+        $data['title'] = 'Payment Process';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $is_processed = $this->Invoice_Model->index();
-        if($is_processed){
+        if ($is_processed) {
             $this->cart->destroy();
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar', $data);
@@ -85,5 +85,17 @@ class Shop extends CI_Controller
         } else {
             echo "Sorry, Your Order is Failed to Process";
         }
+    }
+
+    public function detail_product($id_product)
+    {
+        $data['title'] = 'Payment Process';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['product'] = $this->Product_Model->detail_product($id_product);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('shop/detail_product', $data);
+        $this->load->view('template/footer', $data);
     }
 }

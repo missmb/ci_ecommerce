@@ -45,4 +45,14 @@ class Product_Model extends CI_Model
       return array();
     }
   }
+
+  function detail_product($id_product)
+  {
+    $result = $this->db->where('id', $id_product)->get('product');
+    if ($result->num_rows() > 0) {
+      return $result->result();
+    } else {
+      return false;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 <div class="container-fluid">
     <button class="btn btn-sm btn-primary mb-3" data-toggle="modal" data-target="#addProduct"><i class="fas fa-plus fa-sm"></i> Add Product</button>
+    <a href="<?= base_url('admin/print') ?>" class="btn btn-danger" align="right"><i class="fa fa-print"></i> Print</a>
     <table class="table table-bordered">
         <tr>
             <th>No</th>

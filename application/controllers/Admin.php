@@ -17,7 +17,7 @@ class Admin extends CI_Controller
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
         $this->load->view('template/topbar', $data);
-        $this->load->view('admin/index', $data);
+        $this->load->view('user/index', $data);
         $this->load->view('template/footer', $data);
     }
 
@@ -167,6 +167,10 @@ class Admin extends CI_Controller
     redirect('admin/product');
     }
 
+    public function print(){
+        $data['product'] = $this->Product_Model->get_product('product')->result();
+        $this->load->view('admin/print_product', $data);
+    }
 
     // ----------------------------------------------------------------
     //INVOICE
